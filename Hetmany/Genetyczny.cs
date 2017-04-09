@@ -6,9 +6,9 @@ namespace Hetmany
 {
     public static class Genetyczny
     {
-        private const int PopulationCount = 4;
-        private const double MutationRate = 0.01;
-        private const int MaxGenerations = 1000;
+        private const int PopulationCount = 500;
+        private const double MutationRate = 0.05;
+        private const int MaxGenerations = 10000;
 
         public static Solution Execute(int n)
         {
@@ -18,6 +18,7 @@ namespace Hetmany
 
             while (numerPokolenia < MaxGenerations)
             {
+                Console.WriteLine("Pokolenie nr {0}, best fitness: {1}", numerPokolenia, currentGeneration.First().Fitness);
                 if (currentGeneration.First().Fitness == 0)
                 {
                     return currentGeneration.First();
@@ -82,15 +83,14 @@ namespace Hetmany
 
         private static Solution LosujReproduktora(List<Solution> population)
         {
-            double maxFitness = population.Last().Fitness;
-            double sumOfAllFitness = population.Sum(s => s.Fitness);
+            double sumOfAllFitness = population.Sum(s => (double)1 / s.Fitness);
 
             var progi = new double[population.Count];
             double offset = 0;
 
             for (int i = 0; i < population.Count; i++)
             {
-                double procent = (population[i].Fitness / sumOfAllFitness);
+                double procent = ((double)1 / population[i].Fitness) / sumOfAllFitness;
                 progi[i] = offset;
                 offset += procent;
             }
@@ -106,7 +106,6 @@ namespace Hetmany
                 }
             }
 
-            Console.WriteLine("Wylosowalem reproduktora nr {0}, fitness {1}", index, population[index].Fitness);
             return population[index];
         }
 
