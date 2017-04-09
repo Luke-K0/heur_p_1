@@ -107,5 +107,16 @@ namespace Hetmany
         {
             return (i - qi == j - qj) || (i + qi == j + qj) || (i == j) || (qi == qj);
         }
+
+        public void Mutuj(double mutationRate)
+        {
+            if (Rng.NextDouble() < mutationRate)
+            {
+                int index = Rng.Next(solution.Length);
+                int value = Rng.Next(solution.Length);
+
+                solution[index] = value;
+            }
+        }
     }
 }

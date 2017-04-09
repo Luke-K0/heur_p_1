@@ -10,11 +10,15 @@ namespace Hetmany
             string userN = args.Length > 0 ? args[0] : null;
             if (!int.TryParse(userN, out n))
             {
-                n = 8; // domyslnie szachownica 8x8
+                n = 50; // domyslnie szachownica 8x8
             }
 
             Solution simAnnealSolution = SimulatedAnnealing.Execute(n);
             simAnnealSolution.Rysuj();
+            Console.ReadLine();
+
+            Solution genetycznySolution = Genetyczny.Execute(n);
+            genetycznySolution.Rysuj();
             Console.ReadLine();
         }
     }

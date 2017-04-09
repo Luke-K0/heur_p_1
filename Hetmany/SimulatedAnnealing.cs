@@ -33,7 +33,7 @@ namespace Hetmany
                 }
                 else
                 {
-                    var random = Solution.Rng.Next(1);
+                    double random = Solution.Rng.NextDouble();
                     double acceptanceProbability = Math.Exp((currentSolution.Fitness - newSolution.Fitness) / temp);
                     Console.Write("  delta fitness = {1},    acceptance probability = {0}", acceptanceProbability, currentSolution.Fitness - newSolution.Fitness);
                     if (random < acceptanceProbability)
@@ -56,11 +56,12 @@ namespace Hetmany
             int n = solution.Length;
             int position1 = Solution.Rng.Next(n);
             int position2 = Solution.Rng.Next(n);
-            
-            Solution newSolution = new Solution(solution);
 
-            newSolution[position1] = solution[position2];
-            newSolution[position2] = solution[position1];
+            Solution newSolution = new Solution(solution)
+                                   {
+                                       [position1] = solution[position2],
+                                       [position2] = solution[position1]
+                                   };
 
             newSolution.ReCalculateFitness();
 
