@@ -75,9 +75,6 @@ namespace Hetmany
 
         public void Rysuj()
         {
-            Console.WriteLine();
-            Console.WriteLine("Ostateczny fitness = {0}", Fitness);
-            Console.WriteLine();
             for (int i = 0; i < solution.Length; i++)
             {
                 for (int j = 0; j < solution.Length; j++)
@@ -93,6 +90,8 @@ namespace Hetmany
                 }
                 Console.WriteLine();
             }
+
+            Console.WriteLine("Ostateczny fitness = {0}", Fitness);
         }
 
         private static IEnumerable<int> GenerateSequence(int length)

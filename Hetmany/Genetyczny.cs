@@ -6,9 +6,9 @@ namespace Hetmany
 {
     public static class Genetyczny
     {
-        private const int PopulationCount = 500;
-        private const double MutationRate = 0.05;
-        private const int MaxGenerations = 10000;
+        private const int PopulationCount = 300;
+        private const double MutationRate = 0.1;
+        private const int MaxGenerations = 3000;
 
         public static Solution Execute(int n)
         {
@@ -16,9 +16,10 @@ namespace Hetmany
             currentGeneration.Sort((s1, s2) => s1.Fitness - s2.Fitness);
             int numerPokolenia = 0;
 
+            Console.WriteLine("Genetyczny...");
             while (numerPokolenia < MaxGenerations)
             {
-                Console.WriteLine("Pokolenie nr {0}, best fitness: {1}", numerPokolenia, currentGeneration.First().Fitness);
+                // Console.WriteLine("Pokolenie nr {0}, best fitness: {1}", numerPokolenia, currentGeneration.First().Fitness);
                 if (currentGeneration.First().Fitness == 0)
                 {
                     return currentGeneration.First();
@@ -41,6 +42,7 @@ namespace Hetmany
                 numerPokolenia++;
             }
 
+            Console.WriteLine("Minęło {0} pokoleń", numerPokolenia);
             return currentGeneration.First();
         }
 

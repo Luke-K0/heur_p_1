@@ -17,9 +17,10 @@ namespace Hetmany
             int iteracja = 1;
             int bestIteracja = iteracja;
 
+            Console.WriteLine("Annealing...");
             while (temp > 0.1 && bestSolution.Fitness > 0)
             {
-                Console.Write("temp = {0}", temp);
+                //Console.Write("temp = {0}", temp);
                 Solution newSolution = ModifySolution(currentSolution);
                 
                 if (newSolution.Fitness <= currentSolution.Fitness)
@@ -35,7 +36,7 @@ namespace Hetmany
                 {
                     double random = Solution.Rng.NextDouble();
                     double acceptanceProbability = Math.Exp((currentSolution.Fitness - newSolution.Fitness) / temp);
-                    Console.Write("  delta fitness = {1},    acceptance probability = {0}", acceptanceProbability, currentSolution.Fitness - newSolution.Fitness);
+                    //Console.Write("  delta fitness = {1},    acceptance probability = {0}", acceptanceProbability, currentSolution.Fitness - newSolution.Fitness);
                     if (random < acceptanceProbability)
                     {
                         currentSolution = newSolution;
@@ -44,7 +45,7 @@ namespace Hetmany
 
                 temp = temp * (1 - CoolingRate);
                 iteracja++;
-                Console.WriteLine();
+                //Console.WriteLine();
             }
 
             Console.WriteLine("Najlepsza rozwiazanie bylo w iteracji {0}/{1}", bestIteracja, --iteracja);
