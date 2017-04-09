@@ -105,7 +105,7 @@ namespace Hetmany
 
         private static bool CheckQueenPair(int i, int qi, int j, int qj)
         {
-            return (i - qi == j - qj) || (i + qi == j + qj);
+            return (i - qi == j - qj) || (i + qi == j + qj) || (i == j) || (qi == qj);
         }
     }
 }

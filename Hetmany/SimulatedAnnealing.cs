@@ -4,9 +4,12 @@ namespace Hetmany
 {
     public static class SimulatedAnnealing
     {
-        public static Solution Execute(int n, double temp0, double coolingRate)
+        const double Temp0 = 10;
+        const double CoolingRate = 0.0003;
+
+        public static Solution Execute(int n)
         {
-            var temp = temp0;
+            var temp = Temp0;
 
             Solution currentSolution = new Solution(n);
             Solution bestSolution = currentSolution;
@@ -39,7 +42,7 @@ namespace Hetmany
                     }
                 }
 
-                temp = temp * (1 - coolingRate);
+                temp = temp * (1 - CoolingRate);
                 iteracja++;
                 Console.WriteLine();
             }
